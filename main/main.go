@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"urlshort"
 )
 
@@ -23,9 +23,9 @@ func main() {
 	jsonFile := flag.String("json", "config.json", ".json filename to read from")
 	flag.Parse()
 
-	yaml, err := ioutil.ReadFile(*yamlFile)
+	yaml, err := os.ReadFile(*yamlFile)
 	if err != nil {
-		log.Printf("yamlFile.Get err   #%v ", err)
+		log.Printf("yamlFile parsing err   #%v ", err)
 	}
 
 	yamlHandler, err := urlshort.YAMLHandler(yaml, mapHandler)
@@ -33,9 +33,9 @@ func main() {
 		panic(err)
 	}
 
-	json, err := ioutil.ReadFile(*jsonFile)
+	json, err := os.ReadFile(*jsonFile)
 	if err != nil {
-		log.Printf("jsonFile.Get err   #%v ", err)
+		log.Printf("jsonFile parsing err   #%v ", err)
 	}
 
 	jsonHandler, err := urlshort.JSONHandler(json, yamlHandler)
