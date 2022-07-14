@@ -1,12 +1,12 @@
 {
   "urls": [
     {
-      "path": "/urlshort",
-      "url": "https://github.com/Farber98/urlshort"
+      "path": "/bank",
+      "url": "https://github.com/Farber98/go-simple-bank"
     },
     {
-      "path": "/quiz",
-      "url": "https://github.com/Farber98/quiz"
+      "path": "/case",
+      "url": "https://github.com/Farber98/BD_CASE"
     }
   ]
 }
