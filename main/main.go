@@ -7,16 +7,29 @@ import (
 	"net/http"
 	"os"
 	"urlshort"
+
+	"github.com/boltdb/bolt"
 )
 
 func main() {
+	db, err := bolt.Open("my.db", 0600, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	err = writeDb(db)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	pathsToUrls, err := readDb(db)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	mux := defaultMux()
 
-	// Build the MapHandler using the mux as the fallback
-	pathsToUrls := map[string]string{
-		"/urlshort-godoc": "https://godoc.org/github.com/gophercises/urlshort",
-		"/yaml-godoc":     "https://godoc.org/gopkg.in/yaml.v2",
-	}
 	mapHandler := urlshort.MapHandler(pathsToUrls, mux)
 
 	yamlFile := flag.String("yaml", "config.yaml", ".yaml filename to read from")
