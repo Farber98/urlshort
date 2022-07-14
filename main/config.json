@@ -1,0 +1,12 @@
+{
+  "urls": [
+    {
+      "path": "/urlshort",
+      "url": "https://github.com/Farber98/urlshort"
+    },
+    {
+      "path": "/quiz",
+      "url": "https://github.com/Farber98/quiz"
+    }
+  ]
+}
